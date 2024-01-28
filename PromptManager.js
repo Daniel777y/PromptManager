@@ -7,9 +7,11 @@ export class PromptManager {
     this.interactions = [];
   }
   getCount() {
+    // return the number of interactions.
     return this.interactions.length;
   }
   getType(i) {
+    // check invalid input
     if (this.interactions.length === 0) {
       console.log(`Oops! We don't have any interaction now.`);
       return;
@@ -21,6 +23,7 @@ export class PromptManager {
     return this.interactions[i].getType();
   }
   isDalle(i) {
+    // check invalid input
     if (this.interactions.length === 0) {
       console.log(`Oops! We don't have any interaction now.`);
       return;
@@ -32,6 +35,7 @@ export class PromptManager {
     return this.interactions[i].isDalle();
   }
   show(i) {
+    // check invalid input
     if (this.interactions.length === 0) {
       console.log(`Oops! We don't have any interaction now.`);
       return;
@@ -70,6 +74,7 @@ export class PromptManager {
     }
   }
   remove(i) {
+    // check invalid input
     if (this.interactions.length === 0) {
       console.log(`Oops! We don't have any interaction now.`);
       return;
@@ -78,7 +83,9 @@ export class PromptManager {
       console.log(`Oops! This interactions id is invalid! You must enter an integer in [0, ${this.interactions.length - 1}].`);
       return;
     }
+    // delete the i-th interaction
     this.interactions.splice(i, 1);
+    // reset the id of interactions following the removed one.
     while (i < this.interactions.length) {
       this.interactions[i].setId(i);
       i += 1;
@@ -90,6 +97,7 @@ export class PromptManager {
     console.log(`Removed all!`);
   }
   setFeedback(i, x) {
+    // check invalid input
     if (this.interactions.length === 0) {
       console.log(`Oops! We don't have any interaction now.`);
       return;
