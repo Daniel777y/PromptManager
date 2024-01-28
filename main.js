@@ -56,6 +56,18 @@ manager.show(5);
 manager.remove(5);
 manager.showAllDalle();
 
+// test invalid input
+manager.remove(7);
+manager.show(-1);
+manager.setFeedback(9);
+manager.getType(10);
+
 // remove all the interactions
 manager.removeAll();
 manager.showAll();
+
+// test invalid input
+manager.remove(7);
+manager.show(-1);
+manager.setFeedback(9);
+manager.getType(10);

@@ -5,23 +5,38 @@ export class PromptManager {
   constructor() {
     this.interactions = [];
   }
+  getCount() {
+    return this.interactions.length;
+  }
   getType(i) {
+    if (this.interactions.length === 0) {
+      console.log(`Oops! We don't have any interaction now.`);
+      return;
+    }
     if (i < 0 || i >= this.interactions.length) {
-      console.log(`Oops! This interactions id is invalid! You must enter an integer in [0, ${this.interactions.length}].`);
+      console.log(`Oops! This interactions id is invalid! You must enter an integer in [0, ${this.interactions.length - 1}].`);
       return;
     }
     return this.interactions[i].getType();
   }
   isDalle(i) {
+    if (this.interactions.length === 0) {
+      console.log(`Oops! We don't have any interaction now.`);
+      return;
+    }
     if (i < 0 || i >= this.interactions.length) {
-      console.log(`Oops! This interactions id is invalid! You must enter an integer in [0, ${this.interactions.length}].`);
+      console.log(`Oops! This interactions id is invalid! You must enter an integer in [0, ${this.interactions.length - 1}].`);
       return;
     }
     return this.interactions[i].isDalle();
   }
   show(i) {
+    if (this.interactions.length === 0) {
+      console.log(`Oops! We don't have any interaction now.`);
+      return;
+    }
     if (i < 0 || i >= this.interactions.length) {
-      console.log(`Oops! This interactions id is invalid! You must enter an integer in [0, ${this.interactions.length}].`);
+      console.log(`Oops! This interactions id is invalid! You must enter an integer in [0, ${this.interactions.length - 1}].`);
       return;
     }
     this.interactions[i].show();
@@ -47,8 +62,12 @@ export class PromptManager {
     }
   }
   remove(i) {
+    if (this.interactions.length === 0) {
+      console.log(`Oops! We don't have any interaction now.`);
+      return;
+    }
     if (i < 0 || i >= this.interactions.length) {
-      console.log(`Oops! This interactions id is invalid! You must enter an integer in [0, ${this.interactions.length}].`);
+      console.log(`Oops! This interactions id is invalid! You must enter an integer in [0, ${this.interactions.length - 1}].`);
       return;
     }
     this.interactions.splice(i, 1);
@@ -63,8 +82,12 @@ export class PromptManager {
     console.log(`Removed all!`);
   }
   setFeedback(i, x) {
+    if (this.interactions.length === 0) {
+      console.log(`Oops! We don't have any interaction now.`);
+      return;
+    }
     if (i < 0 || i >= this.interactions.length) {
-      console.log(`Oops! This interactions id is invalid! You must enter an integer in [0, ${this.interactions.length}].`);
+      console.log(`Oops! This interactions id is invalid! You must enter an integer in [0, ${this.interactions.length - 1}].`);
       return;
     }
     if (x < -1 || x > 1) {
@@ -73,16 +96,13 @@ export class PromptManager {
     }
     this.interactions[i].setFeedback(x);
   }
-  addInteraction({type, prompt, response, feedback}) {
-    const p = new Interaction({id: this.interactions.length, type, prompt, response, feedback});
+  addInteraction({prompt, response, feedback}) {
+    const p = new Interaction({id: this.interactions.length, prompt, response, feedback});
     this.interactions.push(p);
   }
-  addDalleInteraction({type, prompt, promptImgUrl, response, responseImgUrl, feedback}) {
-    const p = new DalleInteraction({id: this.interactions.length, type, prompt, promptImgUrl, response, responseImgUrl, feedback});
+  addDalleInteraction({prompt, promptImgUrl, response, responseImgUrl, feedback}) {
+    const p = new DalleInteraction({id: this.interactions.length, prompt, promptImgUrl, response, responseImgUrl, feedback});
     this.interactions.push(p);
-  }
-  getCount() {
-    return this.interactions.length;
   }
 }
 
