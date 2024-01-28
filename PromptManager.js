@@ -5,11 +5,19 @@ export class PromptManager {
   constructor() {
     this.interactions = [];
   }
-  showAll() {
-    console.log(`Now we have ${this.interactions.length} interaction(s).`);
-    for (let interaction of this.interactions) {
-      interaction.show();
+  getType(i) {
+    if (i < 0 || i >= this.interactions.length) {
+      console.log(`Oops! This interactions id is invalid! You must enter an integer in [0, ${this.interactions.length}].`);
+      return;
     }
+    return this.interactions[i].getType();
+  }
+  isDalle(i) {
+    if (i < 0 || i >= this.interactions.length) {
+      console.log(`Oops! This interactions id is invalid! You must enter an integer in [0, ${this.interactions.length}].`);
+      return;
+    }
+    return this.interactions[i].isDalle();
   }
   show(i) {
     if (i < 0 || i >= this.interactions.length) {
@@ -17,6 +25,26 @@ export class PromptManager {
       return;
     }
     this.interactions[i].show();
+  }
+  showAll() {
+    console.log(`Now we have ${this.interactions.length} interaction(s).`);
+    for (let interaction of this.interactions) {
+      interaction.show();
+    }
+  }
+  showAllDefault() {
+    const defaults = this.interactions.filter(interaction => interaction.getType() === 'Default');
+    console.log(`Now we have ${defaults.length} default interaction(s)`);
+    for (let interaction of defaults) {
+      interaction.show();
+    }
+  }
+  showAllDalle() {
+    const dalles = this.interactions.filter(interaction => interaction.getType() === 'Dalle');
+    console.log(`Now we have ${dalles.length} dalle interaction(s)`);
+    for (let interaction of dalles) {
+      interaction.show();
+    }
   }
   remove(i) {
     if (i < 0 || i >= this.interactions.length) {
@@ -28,7 +56,7 @@ export class PromptManager {
       this.interactions[i].setId(i);
       i += 1;
     }
-    console.log(`Removed interaction i!`);
+    console.log(`Removed interaction ${i}!`);
   }
   removeAll() {
     this.interactions = [];

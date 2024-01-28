@@ -9,7 +9,7 @@ export class DalleInteraction extends Interaction {
   show() {
     console.log(`-----------------------------------------------------------------------------`);
     console.log(`Interaction ${this.id} is a ${this.type} one.`);
-    console.log(`Prompt: ${this.prompt.slice(0, 20)}:`);
+    console.log(`Prompt: ${this.prompt.slice(0, 20)}`);
     console.log(`PromptImgUrl: ${this.promptImgUrl}`);
     console.log(`Response: ${this.response.slice(0, 20)}`);
     console.log(`ResponseImgUrl: ${this.responseImgUrl}`);
