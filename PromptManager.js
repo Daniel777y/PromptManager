@@ -1,5 +1,6 @@
 import Interaction from './Interaction.js'
 import DalleInteraction from './DalleInteraction.js'
+import TimestampInteraction from './TimestampInteraction.js'
 
 export class PromptManager {
   constructor() {
@@ -61,6 +62,13 @@ export class PromptManager {
       interaction.show();
     }
   }
+  showAllTimestamp() {
+    const timestamps = this.interactions.filter(interaction => interaction.getType() === 'Timestamp');
+    console.log(`Now we have ${timestamps.length} timestamp interaction(s)`);
+    for (let interaction of timestamps) {
+      interaction.show();
+    }
+  }
   remove(i) {
     if (this.interactions.length === 0) {
       console.log(`Oops! We don't have any interaction now.`);
@@ -102,6 +110,10 @@ export class PromptManager {
   }
   addDalleInteraction({prompt, promptImgUrl, response, responseImgUrl, feedback}) {
     const p = new DalleInteraction({id: this.interactions.length, prompt, promptImgUrl, response, responseImgUrl, feedback});
+    this.interactions.push(p);
+  }
+  addTimestampInteraction({prompt, response, timestamp = Date.now(), feedback}) {
+    const p = new TimestampInteraction({id: this.interactions.length, prompt, response, timestamp ,feedback});
     this.interactions.push(p);
   }
 }

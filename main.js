@@ -38,18 +38,27 @@ manager.addDalleInteraction({prompt: 'A dalle prompt', promptImgUrl: 'WhatAPromp
 console.log(manager.getCount());
 manager.showAll();
 
-// show all dalle interactions
-manager.showAllDalle();
+// add some timestamp interactions
+manager.addTimestampInteraction({prompt: 'this is my first timestamp prompt', response: 'this is my first timestamp response', feedback: GOOD});
+manager.addTimestampInteraction({prompt: 'Another timestamp prompt', response: 'Another timestamp response', feedback: NORMAL});
+manager.showAll();
+
 // show all default interactions
 manager.showAllDefault();
+// show all dalle interactions
+manager.showAllDalle();
+// show all timestamp interactions
+manager.showAllTimestamp();
 
 // test getType() function
 console.log(manager.getType(0));
 console.log(manager.getType(5));
+console.log(manager.getType(7));
 
 // test isDalle() function
 console.log(manager.isDalle(1));
 console.log(manager.isDalle(4));
+console.log(manager.isDalle(6));
 
 // test show() function and remove a dalle interaction
 manager.show(5);
