@@ -1,5 +1,9 @@
 # OOP Coding - PromptManager
 
+This project implement a prompt manager, recording interactions with GPT. There three types of interactions: default, Dalle and Timestamp.
+
+Each of them includes different features. Taking advantadge of prompt manager, you can add, show, modify and delete interactions.
+
 License: MIT
 
 ## Test
@@ -200,6 +204,22 @@ A Dalle interaction contains all the fields in a default interaction. Other than
 #### Functions
 
 A Dalle interactions contains all the functions in a default interaction.
+
+### TimestampInteraction
+
+#### Fields
+
+A Timestamp interaction contains all the fields in a default interaction. Other than that, it also contains a timestamp.
+
+```
+{
+  timestamp: a number, Date.now()
+}
+```
+
+#### Functions
+
+A Timestamp interactions contains all the functions in a default interaction.
 
 ## Creative Feature
 
