@@ -152,9 +152,19 @@ manager.addDalleInteraction({
   response: '',
   responseImgUrl: '404',
   feedback: 0,
-})
+});
 ```
 
+### addTimestampInteraction
+
+```
+manager.addTimestampInteraction({
+  prompt: '',
+  response: '',
+  timestamp: Date.now(),
+  feedback: 0,
+});
+```
 
 ## Implement of Interaction
 
@@ -230,3 +240,7 @@ In ChatGPT, whenever you ask a question then get response, you can click a butto
 This feedback is useful to update the training data and improve GPT's performance. In my code, every interaction contains a field `feedback`, where `1` for good response, `0` for null value or normal response, `-1` for bad response.
 
 By using the `show()` method, a prompt manager will display the feedback of interactions, or you can reset the feedback by using `setFeedback(i, x)` method.
+
+### showAllDeauflt | showAllDalle | showAllTimestamp
+
+These three functions filter corresponding type of interactions.
