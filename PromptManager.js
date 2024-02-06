@@ -113,14 +113,26 @@ export class PromptManager {
     this.interactions[i].setFeedback(x);
   }
   addInteraction({prompt, response, feedback}) {
+    if (prompt === '' || response === '') {
+      console.log(`The prompt and response shouldn't be empty`);
+      return;
+    }
     const p = new Interaction({id: this.interactions.length, prompt, response, feedback});
     this.interactions.push(p);
   }
   addDalleInteraction({prompt, promptImgUrl, response, responseImgUrl, feedback}) {
+    if (prompt === '' || response === '') {
+      console.log(`The prompt and response shouldn't be empty`);
+      return;
+    }
     const p = new DalleInteraction({id: this.interactions.length, prompt, promptImgUrl, response, responseImgUrl, feedback});
     this.interactions.push(p);
   }
   addTimestampInteraction({prompt, response, timestamp = Date.now(), feedback}) {
+    if (prompt === '' || response === '') {
+      console.log(`The prompt and response shouldn't be empty`);
+      return;
+    }
     const p = new TimestampInteraction({id: this.interactions.length, prompt, response, timestamp ,feedback});
     this.interactions.push(p);
   }
